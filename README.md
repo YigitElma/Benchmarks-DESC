@@ -46,8 +46,14 @@ python compare-results.py master my/branch --mode memory            # plot
 
 To step through many versions instead of comparing two, list them at the top of
 `compare-versions.py` and run it. It writes one memory figure per consecutive
-pair, `memory-<script>-<device>-<v1>-<v2>.png`, with each version keeping its
-color and all frames sharing their axes, ready to be stitched into a gif.
+pair, `memory-<script>-<device>-<v1>-<v2>.png`:
+
+![one pair of versions](results/example.png)
+
+Each version keeps its color and every frame shares its axes, so the frames also
+go straight into a gif, `memory-<script>-<device>.gif`:
+
+![every version in turn](results/example.gif)
 
 ## Adding a benchmark
 
