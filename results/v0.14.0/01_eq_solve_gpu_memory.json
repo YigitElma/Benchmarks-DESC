@@ -1,0 +1,30 @@
+{
+  "device": "gpu",
+  "last_run": "deriv_mode=batched,eq_L=14,eq_L_grid=28,eq_M=14,eq_M_grid=28,eq_N=14,eq_N_grid=28,jac_chunk_size=500,maxiter=5,name=precise_QA,tr_method=qr",
+  "profile_mode": "memory",
+  "runs": {
+    "deriv_mode=batched,eq_L=14,eq_L_grid=28,eq_M=14,eq_M_grid=28,eq_N=14,eq_N_grid=28,jac_chunk_size=500,maxiter=5,name=precise_QA,tr_method=qr": {
+      "commit": "9f37cc651",
+      "config": {
+        "deriv_mode": "batched",
+        "eq_L": 14,
+        "eq_L_grid": 28,
+        "eq_M": 14,
+        "eq_M_grid": 28,
+        "eq_N": 14,
+        "eq_N_grid": 28,
+        "jac_chunk_size": 500,
+        "maxiter": 5,
+        "name": "precise_QA",
+        "tr_method": "qr"
+      },
+      "n_repeat": 1,
+      "t_compile": 132.99173675800012,
+      "times": [
+        132.99173675800012
+      ],
+      "timestamp": "2026-08-11T18:00:57"
+    }
+  },
+  "script": "01_eq_solve"
+}

@@ -28,46 +28,20 @@ from desc import set_device
 
 set_device(DEVICE)
 
-
+from packaging.version import Version
 import desc
 
 from desc.basis import *
 from desc.backend import *
-from desc.compute import *
-from desc.coils import *
 from desc.equilibrium import *
-from desc.examples import *
-from desc.grid import *
-from desc.geometry import *
-from desc.io import *
-
 from desc.objectives import *
-from desc.objectives.objective_funs import *
-from desc.objectives.getters import *
-from desc.objectives.normalization import compute_scaling_factors
-from desc.objectives.utils import *
-from desc.optimize._constraint_wrappers import *
-
-from desc.transform import Transform
-from desc.plotting import *
 from desc.optimize import *
-from desc.perturbations import *
-from desc.profiles import *
-from desc.compat import *
-from desc.utils import *
-from desc.magnetic_fields import *
-from desc.particles import *
-
-from desc.__main__ import main
-from desc.vmec_utils import vmec_boundary_subspace
-from desc.input_reader import InputReader
-from desc.continuation import solve_continuation_automatic
-from desc.compute.data_index import register_compute_fun
-from desc.optimize.utils import solve_triangular_regularized
+from desc.io import load
 
 from bench_io import config_key, save_result
 
-print_backend_info()
+if Version(desc.__version__) >= Version("0.14.0"):
+    print_backend_info()
 print(f"device : {DEVICE}, profile mode : {PROFILE_MODE}, N_REPEAT : {N_REPEAT}")
 print(f"save dir : {SAVE_DIR}")
 
@@ -79,18 +53,24 @@ tr_method = "qr"
 name = "precise_QA"
 
 N = res
-eq = get(name)
+# keep the initial values the same
+eq = load(f"./inputs/{name}_output.h5")[-1]
 eq.change_resolution(L=N, M=N, N=N, L_grid=2 * N, M_grid=2 * N, N_grid=2 * N)
 eq.set_initial_guess()
-obj = ObjectiveFunction(
-    ForceBalance(eq), jac_chunk_size=jac_chunk_size, deriv_mode=deriv_mode
-)
+if Version(desc.__version__) >= Version("0.12.3"):
+    obj = ObjectiveFunction(
+        ForceBalance(eq), jac_chunk_size=jac_chunk_size, deriv_mode=deriv_mode
+    )
+else:
+    obj = ObjectiveFunction(ForceBalance(eq), deriv_mode=deriv_mode)
 obj.build()
 
 eq.resolution_summary()
 print(f"\neq.solve for {name}, maxiter={maxiter}")
-print(f"deriv mode : {obj._deriv_mode}, jac_chunk_size : {obj._jac_chunk_size}")
-
+if Version(desc.__version__) >= Version("0.12.3"):
+    print(f"deriv mode : {obj._deriv_mode}, jac_chunk_size : {obj._jac_chunk_size}")
+else:
+    print(f"deriv mode : {obj._deriv_mode}, jac_chunk_size : doesn't exist")
 
 CONFIG = {
     "name": name,

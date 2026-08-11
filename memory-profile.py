@@ -23,7 +23,7 @@ import time
 import threading
 import numpy as np
 
-from bench_io import trace_path
+from bench_io import last_run_key, trace_path
 
 
 def monitor_ram(proc, interval, ram_usage, timestamps):
@@ -118,7 +118,8 @@ if __name__ == "__main__":
         # drop the interpreter's own baseline RSS
         mem_usage = mem_usage - min(mem_usage)
     times = np.asarray(ts) - ts[0]
-    path = trace_path(save_dir, script, device)
+    # one trace per setting, named after what the script just stored
+    path = trace_path(save_dir, script, device, last_run_key(save_dir, script, device))
     np.savez_compressed(path, time=times, memory=mem_usage)
     rate = len(times) / times[-1] / 1e3
     print(f"saved memory trace to {path} ({rate:.1f} kHz)")

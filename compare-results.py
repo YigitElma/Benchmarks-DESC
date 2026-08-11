@@ -14,7 +14,6 @@ prints the peak usage.
 """
 
 import argparse
-import glob
 import os
 
 import numpy as np
@@ -90,67 +89,65 @@ def speed_tables(args):
 
 
 def memory_plots(args):
-    """Overlay the memory traces of every branch, one figure per script."""
+    """Overlay every branch, one figure per script and one row per setting."""
     import matplotlib
 
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
-    scripts = set()
-    for branch in args.branches:
-        folder = bench_io.branch_dir(args.results_dir, branch)
-        pattern = f"{args.script or '*'}_{args.device}_memory.npz"
-        for path in glob.glob(os.path.join(folder, pattern)):
-            scripts.add(os.path.basename(path)[: -len(f"_{args.device}_memory.npz")])
+    found = {
+        b: bench_io.load_branch(args.results_dir, b, args.device, "memory", args.script)
+        for b in args.branches
+    }
+    scripts = sorted({s for runs in found.values() for s in runs})
     if not scripts:
-        print(f"no memory traces for {args.device} in {args.results_dir}")
+        print(f"no memory results for {args.device} in {args.results_dir}")
         return
 
-    for script in sorted(scripts):
-        rows = []
-        base = None
-        plt.figure(figsize=(20, 7))
-        for branch in args.branches:
-            folder = bench_io.branch_dir(args.results_dir, branch)
-            path = bench_io.trace_path(folder, script, args.device)
-            if not os.path.exists(path):
-                rows.append([branch, "-", "-", "-", "-"])
-                continue
-            trace = np.load(path)
-            t, m = trace["time"], trace["memory"]
-            trim = auto_trim(m, args.threshold)
-            plt.plot(t[trim:] - t[trim], m[trim:], label=branch)
-            peak = m.max()
-            base = base if base is not None else peak
-            # the settings of the run that produced this trace
-            runs = bench_io.load_branch(
-                args.results_dir, branch, args.device, "memory", script
-            ).get(script, {})
-            run = next(iter(runs.values()), {})
-            rows.append(
-                [
-                    branch,
-                    run.get("commit") or "-",
-                    next(iter(runs), "-"),
-                    f"{peak:.0f}",
-                    f"{peak / base:.2f}x",
-                ]
-            )
-
-        plt.xlabel("Time (s)", fontsize=20)
-        plt.ylabel(f"{args.device.upper()} Memory Usage (MB)", fontsize=20)
-        plt.title(f"{script}  [{args.device}]")
-        plt.grid(True)
-        plt.legend()
-        plt.tight_layout()
-        out = os.path.join(args.results_dir, f"memory-{script}-{args.device}.png")
-        plt.savefig(out, dpi=200)
-        plt.close()
-
-        print(f"\n{script}  [{args.device}]")
-        render(
-            ["branch", "commit", "settings", "peak MB", "vs base"], rows, args.markdown
+    header = ["branch", "commit", "peak MB", "vs base"]
+    for script in scripts:
+        keys = sorted({k for b in args.branches for k in found[b].get(script, {})})
+        fig, axes = plt.subplots(
+            len(keys), 1, figsize=(20, 6 * len(keys)), squeeze=False
         )
+        for ax, key in zip(axes[:, 0], keys):
+            rows = []
+            base = None
+            for branch in args.branches:
+                folder = bench_io.branch_dir(args.results_dir, branch)
+                path = bench_io.trace_path(folder, script, args.device, key)
+                if not os.path.exists(path):
+                    rows.append([branch, "-", "-", "-"])
+                    continue
+                trace = np.load(path)
+                t, m = trace["time"], trace["memory"]
+                trim = auto_trim(m, args.threshold)
+                ax.plot(t[trim:] - t[trim], m[trim:], label=branch)
+                peak = m.max()
+                base = base if base is not None else peak
+                run = found[branch][script][key]
+                rows.append(
+                    [
+                        branch,
+                        run.get("commit") or "-",
+                        f"{peak:.0f}",
+                        f"{peak / base:.2f}x",
+                    ]
+                )
+            ax.set_xlabel("Time (s)", fontsize=14)
+            ax.set_ylabel(f"{args.device.upper()} Memory (MB)", fontsize=14)
+            ax.set_title(key, fontsize=12)
+            ax.grid(True)
+            ax.legend()
+
+            print(f"\n{script}  [{args.device}]\nsettings: {key}")
+            render(header, rows, args.markdown)
+
+        fig.suptitle(f"{script}  [{args.device}]", fontsize=16)
+        fig.tight_layout()
+        out = os.path.join(args.results_dir, f"memory-{script}-{args.device}.png")
+        fig.savefig(out, dpi=200)
+        plt.close(fig)
         print(f"saved plot to {out}")
 
 

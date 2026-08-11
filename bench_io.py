@@ -8,12 +8,13 @@ there is one JSON file per script, device and profile mode:
 Each file holds a "runs" dict keyed by the script's settings, so re-running a
 script with the same resolution and chunk sizes overwrites that entry while a
 different setting is stored next to it. Memory traces from memory-profile.py go
-to <script>_<device>_memory.npz in the same folder. Read it all back with
-compare-results.py.
+next to it as <script>_<device>_memory_<settings id>.npz, one per setting, the
+id being a short hash of the same key. Read it all back with compare-results.py.
 """
 
 import datetime
 import glob
+import hashlib
 import json
 import os
 import subprocess
@@ -45,9 +46,21 @@ def result_path(save_dir, script, device, profile_mode):
     return os.path.join(save_dir, f"{stem(script)}_{device}_{profile_mode}.json")
 
 
-def trace_path(save_dir, script, device):
-    """Path of the memory trace of one script."""
-    return os.path.join(save_dir, f"{stem(script)}_{device}_memory.npz")
+def config_id(key):
+    """Short stable id of a settings key, the keys are too long for a file name."""
+    return hashlib.sha1(key.encode()).hexdigest()[:8]
+
+
+def trace_path(save_dir, script, device, key=None):
+    """Path of the memory trace of one script at one setting."""
+    suffix = f"_{config_id(key)}" if key else ""
+    return os.path.join(save_dir, f"{stem(script)}_{device}_memory{suffix}.npz")
+
+
+def last_run_key(save_dir, script, device):
+    """Settings key the script stored last, so the trace can be named after it."""
+    data = load_file(result_path(save_dir, script, device, "memory"))
+    return (data or {}).get("last_run")
 
 
 def git_commit():
@@ -84,7 +97,8 @@ def save_result(save_dir, script, device, profile_mode, config, t_compile, times
         "profile_mode": profile_mode,
         "runs": {},
     }
-    data["runs"][config_key(config)] = {
+    key = config_key(config)
+    data["runs"][key] = {
         "config": {k: _plain(v) for k, v in config.items()},
         "n_repeat": len(times),
         "t_compile": t_compile,
@@ -92,6 +106,8 @@ def save_result(save_dir, script, device, profile_mode, config, t_compile, times
         "commit": git_commit(),
         "timestamp": datetime.datetime.now().isoformat(timespec="seconds"),
     }
+    # memory-profile.py names the trace it is about to write after this
+    data["last_run"] = key
     with open(path, "w") as f:
         json.dump(data, f, indent=2, sort_keys=True)
     print(f"saved result to {path}")

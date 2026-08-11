@@ -4,7 +4,9 @@
 # of the two you call decides speed or memory; memory also forces N_REPEAT=1.
 
 DESC_DIR="/CODES/DESC"
-BRANCHES=("master" "v0.17.3" "v0.17.2" "v0.17.1")
+# BRANCHES=("master" "v0.17.3" "v0.17.2" "v0.17.1" "v0.17.0" "v0.16.0")
+# BRANCHES=("v0.16.0" "v0.15.0" "v0.14.2" "v0.14.1" "v0.14.0" "v0.13.0" "v0.12.3" "v0.12.2")
+BRANCHES=("v0.12.2")
 # conda envs to compare (e.g. different dependency versions).
 # Provide proper envs for your device here.
 ENVS=("gpu")

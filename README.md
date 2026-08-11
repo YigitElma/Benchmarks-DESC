@@ -29,18 +29,25 @@ It logs each run separately, skips over failures, and writes a markdown summary.
 One folder per branch, one file per script, device and mode:
 
 ```
-results/<branch>/<script>_<device>_<speed|memory>.json   timings + settings
-results/<branch>/<script>_<device>_memory.npz            memory trace
+results/<branch>/<script>_<device>_<speed|memory>.json      timings + settings
+results/<branch>/<script>_<device>_memory_<id>.npz          memory trace
 ```
 
 Runs are keyed by the script's settings, so a different resolution or chunk size
-is kept alongside; the same settings overwrite. Read them back with:
+is kept alongside; the same settings overwrite. `<id>` is a short hash of that
+same key, so each setting keeps its own trace, and the memory plot gets one
+subplot per setting. Read them back with:
 
 ```bash
 python compare-results.py master my/branch --device gpu             # table
 python compare-results.py master my/branch --device gpu --markdown
 python compare-results.py master my/branch --mode memory            # plot
 ```
+
+To step through many versions instead of comparing two, list them at the top of
+`compare-versions.py` and run it. It writes one memory figure per consecutive
+pair, `memory-<script>-<device>-<v1>-<v2>.png`, with each version keeping its
+color and all frames sharing their axes, ready to be stitched into a gif.
 
 ## Adding a benchmark
 
