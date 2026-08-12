@@ -107,9 +107,12 @@ def run():
 t_compile = timeit.timeit(run, number=1)
 print(f"compile + first run: {t_compile:7.3f} s")
 
-times = timeit.repeat(run, number=1, repeat=N_REPEAT)
-print(
-    f"run: best {min(times):7.4f} s, mean {np.mean(times):7.4f} s, "
-    f"worst {max(times):7.4f} s (over {N_REPEAT} runs)"
-)
+if N_REPEAT > 0:
+    times = timeit.repeat(run, number=1, repeat=N_REPEAT)
+    print(
+        f"run: best {min(times):7.4f} s, mean {np.mean(times):7.4f} s, "
+        f"worst {max(times):7.4f} s (over {N_REPEAT} runs)"
+    )
+else:
+    times = [t_compile]
 save_result(SAVE_DIR, __file__, DEVICE, PROFILE_MODE, CONFIG, t_compile, times)

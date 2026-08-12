@@ -1,0 +1,33 @@
+{
+  "device": "gpu",
+  "last_run": "B_plasma_chunk_size=None,bs_chunk_size=None,eq_L=10,eq_L_grid=20,eq_M=10,eq_M_grid=20,eq_N=10,eq_N_grid=20,force_chunk_size=None,jac_chunk_size=60,maxiter=3,n_coils=10,name=precise_QA,r_over_a=2",
+  "profile_mode": "memory",
+  "runs": {
+    "B_plasma_chunk_size=None,bs_chunk_size=None,eq_L=10,eq_L_grid=20,eq_M=10,eq_M_grid=20,eq_N=10,eq_N_grid=20,force_chunk_size=None,jac_chunk_size=60,maxiter=3,n_coils=10,name=precise_QA,r_over_a=2": {
+      "commit": "b8a836b42",
+      "config": {
+        "B_plasma_chunk_size": null,
+        "bs_chunk_size": null,
+        "eq_L": 10,
+        "eq_L_grid": 20,
+        "eq_M": 10,
+        "eq_M_grid": 20,
+        "eq_N": 10,
+        "eq_N_grid": 20,
+        "force_chunk_size": null,
+        "jac_chunk_size": 60,
+        "maxiter": 3,
+        "n_coils": 10,
+        "name": "precise_QA",
+        "r_over_a": 2
+      },
+      "n_repeat": 1,
+      "t_compile": 267.51184959799866,
+      "times": [
+        267.51184959799866
+      ],
+      "timestamp": "2026-08-11T23:54:11"
+    }
+  },
+  "script": "05_opt_freeb_coils"
+}

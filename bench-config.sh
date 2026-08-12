@@ -4,8 +4,7 @@
 # of the two you call decides speed or memory; memory also forces N_REPEAT=1.
 
 DESC_DIR="/CODES/DESC"
-# BRANCHES=("master" "v0.17.3" "v0.17.1" "v0.17.0")
-BRANCHES=("master" "v0.17.3" "v0.17.1" "v0.17.0" "v0.16.0" "v0.15.0" "v0.14.2" "v0.14.1" "v0.14.0" "v0.13.0" "v0.12.3" "v0.12.2")
+BRANCHES=("master" "yge/prox-fxh")
 # conda envs to compare (e.g. different dependency versions).
 # Provide proper envs for your device here.
 ENVS=("gpu")
@@ -14,11 +13,11 @@ N_REPEAT=5             # will be overwritten to 1 for memory
 INTERVAL=1e-5          # memory profiling: seconds between samples
 RESULTS_DIR="results"  # one folder per branch below this
 
-SCRIPT="01_eq_solve.py"
-# SCRIPT="02_boundary_error.py"
-# SCRIPT="03_prox_jac_freeb_coils.py"
+# SCRIPT="01_eq_solve.py"
+# SCRIPT="02_lcp_prox_jac_freeb.py"
+SCRIPT="03_lcp_prox_jac_freeb_coils.py"
 # SCRIPT="04_quadratic_flux_jac.py"
-# SCRIPT="05_prox_jac_freeb.py"
+# SCRIPT="05_opt_freeb_coils.py"
 # SCRIPT="06_prox_jac_qa.py"
 # SCRIPT="07_prox_jac_qa_coils.py"
 # SCRIPT="08_fieldline_trace.py"

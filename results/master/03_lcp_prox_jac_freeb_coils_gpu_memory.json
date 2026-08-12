@@ -1,0 +1,32 @@
+{
+  "device": "gpu",
+  "last_run": "B_plasma_chunk_size=None,bs_chunk_size=None,eq_L=10,eq_L_grid=20,eq_M=10,eq_M_grid=20,eq_N=10,eq_N_grid=20,force_chunk_size=None,jac_chunk_size=60,n_coils=10,name=precise_QA,r_over_a=2",
+  "profile_mode": "memory",
+  "runs": {
+    "B_plasma_chunk_size=None,bs_chunk_size=None,eq_L=10,eq_L_grid=20,eq_M=10,eq_M_grid=20,eq_N=10,eq_N_grid=20,force_chunk_size=None,jac_chunk_size=60,n_coils=10,name=precise_QA,r_over_a=2": {
+      "commit": "b08eb42fb",
+      "config": {
+        "B_plasma_chunk_size": null,
+        "bs_chunk_size": null,
+        "eq_L": 10,
+        "eq_L_grid": 20,
+        "eq_M": 10,
+        "eq_M_grid": 20,
+        "eq_N": 10,
+        "eq_N_grid": 20,
+        "force_chunk_size": null,
+        "jac_chunk_size": 60,
+        "n_coils": 10,
+        "name": "precise_QA",
+        "r_over_a": 2
+      },
+      "n_repeat": 1,
+      "t_compile": 42.36521420400095,
+      "times": [
+        25.145519372999843
+      ],
+      "timestamp": "2026-08-12T00:11:06"
+    }
+  },
+  "script": "03_lcp_prox_jac_freeb_coils"
+}

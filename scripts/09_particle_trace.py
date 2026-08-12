@@ -216,7 +216,6 @@ def run():
 t_compile = timeit.timeit(run, number=1)
 print(f"compile + first run: {t_compile:7.3f} s")
 
-
 if N_REPEAT > 0:
     times = timeit.repeat(run, number=1, repeat=N_REPEAT)
     print(
