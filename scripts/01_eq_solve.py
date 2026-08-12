@@ -45,9 +45,9 @@ if Version(desc.__version__) >= Version("0.14.0"):
 print(f"device : {DEVICE}, profile mode : {PROFILE_MODE}, N_REPEAT : {N_REPEAT}")
 print(f"save dir : {SAVE_DIR}")
 
-res = 8
+res = 14
 maxiter = 5
-jac_chunk_size = None
+jac_chunk_size = 500
 deriv_mode = "batched"
 tr_method = "qr"
 name = "precise_QA"
