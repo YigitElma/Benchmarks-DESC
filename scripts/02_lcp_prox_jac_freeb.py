@@ -14,6 +14,7 @@ assert PROFILE_MODE in ["memory", "speed"], f"unknown profile mode '{PROFILE_MOD
 N_REPEAT = 1 if PROFILE_MODE == "memory" else 5
 if len(sys.argv) > 3:
     N_REPEAT = int(sys.argv[3])
+    N_REPEAT = 5
 SAVE_DIR = sys.argv[4] if len(sys.argv) > 4 else None
 
 if PROFILE_MODE == "memory":
@@ -36,7 +37,7 @@ from desc.objectives import *
 from desc.optimize._constraint_wrappers import *
 from desc.grid import *
 from desc.optimize import *
-from scripts.universal import init_modular
+from desc.magnetic_fields import ToroidalMagneticField
 from bench_io import config_key, save_result
 
 if Version(desc.__version__) >= Version("0.14.0"):
@@ -45,20 +46,27 @@ print(f"device : {DEVICE}, profile mode : {PROFILE_MODE}, N_REPEAT : {N_REPEAT}"
 print(f"save dir : {SAVE_DIR}")
 
 
-n_coils = 10
-r_over_a = 2
-jac_chunk_size = 160
+jac_chunk_size = None
 bs_chunk_size = None
+force_chunk_size = None
+B_plasma_chunk_size = None
+name = "precise_QA"
+res = 8
 
-name = "ESTELL"
 eq = load(f"./inputs/{name}_output.h5")[-1]
+eq.change_resolution(res, res, res, res * 2, res * 2, res * 2)
+field = ToroidalMagneticField(B0=1.0, R0=1.0)
 
-field = init_modular(eq, n_coils, r_over_a)
-field_grid = LinearGrid(N=20)
-field = field.to_FourierXYZ(N=8, grid=field_grid, check_intersection=False)
-
-objective = ObjectiveFunction(BoundaryError(eq, field=field))
-constraint = ObjectiveFunction(ForceBalance(eq))
+objective = ObjectiveFunction(
+    BoundaryError(
+        eq,
+        field=field,
+        B_plasma_chunk_size=B_plasma_chunk_size,
+        bs_chunk_size=bs_chunk_size,
+    ),
+    jac_chunk_size=jac_chunk_size,
+)
+constraint = ObjectiveFunction(ForceBalance(eq), jac_chunk_size=force_chunk_size)
 prox = ProximalProjection(
     objective, constraint, eq, solve_options={"solve_during_proximal_build": False}
 )
@@ -67,10 +75,6 @@ obj = LinearConstraintProjection(
 )
 obj.build()
 x = obj.x(eq)
-print(
-    f"\nBoundaryError.jac_scaled_error for {name}, n_coils={n_coils} "
-    f"({field.num_coils} total incl. virtual coils)"
-)
 print(f"dim_x : {x.size}")
 print(f"bs_chunk_size : {bs_chunk_size}, jac_chunk_size : {jac_chunk_size}")
 
@@ -83,10 +87,10 @@ CONFIG = {
     "eq_L_grid": eq.L_grid,
     "eq_M_grid": eq.M_grid,
     "eq_N_grid": eq.N_grid,
-    "n_coils": n_coils,
-    "r_over_a": r_over_a,
     "jac_chunk_size": jac_chunk_size,
     "bs_chunk_size": bs_chunk_size,
+    "force_chunk_size": force_chunk_size,
+    "B_plasma_chunk_size": B_plasma_chunk_size,
 }
 print(f"config : {config_key(CONFIG)}")
 

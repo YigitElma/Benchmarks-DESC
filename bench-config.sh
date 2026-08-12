@@ -4,7 +4,7 @@
 # of the two you call decides speed or memory; memory also forces N_REPEAT=1.
 
 DESC_DIR="/CODES/DESC"
-BRANCHES=("master" "yge/prox-fxh")
+BRANCHES=("master" "claude/nonlinear-constraints-proximal-67crod")
 # conda envs to compare (e.g. different dependency versions).
 # Provide proper envs for your device here.
 ENVS=("gpu")
@@ -14,8 +14,8 @@ INTERVAL=1e-5          # memory profiling: seconds between samples
 RESULTS_DIR="results"  # one folder per branch below this
 
 # SCRIPT="01_eq_solve.py"
-# SCRIPT="02_lcp_prox_jac_freeb.py"
-SCRIPT="03_lcp_prox_jac_freeb_coils.py"
+SCRIPT="02_lcp_prox_jac_freeb.py"
+# SCRIPT="03_lcp_prox_jac_freeb_coils.py"
 # SCRIPT="04_quadratic_flux_jac.py"
 # SCRIPT="05_opt_freeb_coils.py"
 # SCRIPT="06_prox_jac_qa.py"
