@@ -33,7 +33,7 @@ import desc
 
 from desc.basis import *
 from desc.backend import *
-from desc.equilibrium import *
+
 from desc.objectives import *
 from desc.optimize import *
 from desc.io import load
@@ -45,9 +45,9 @@ if Version(desc.__version__) >= Version("0.14.0"):
 print(f"device : {DEVICE}, profile mode : {PROFILE_MODE}, N_REPEAT : {N_REPEAT}")
 print(f"save dir : {SAVE_DIR}")
 
-res = 14
+res = 8
 maxiter = 5
-jac_chunk_size = 500
+jac_chunk_size = None
 deriv_mode = "batched"
 tr_method = "qr"
 name = "precise_QA"
