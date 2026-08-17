@@ -1,10 +1,10 @@
 {
   "device": "gpu",
-  "last_run": "deriv_mode=batched,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,jac_chunk_size=None,maxiter=5,name=precise_QA,tr_method=qr",
+  "last_run": "deriv_mode=batched,eq_L=18,eq_L_grid=36,eq_M=18,eq_M_grid=36,eq_N=18,eq_N_grid=36,jac_chunk_size=1,maxiter=1,name=precise_QA,tr_method=qr",
   "profile_mode": "memory",
   "runs": {
-    "deriv_mode=batched,eq_L=14,eq_L_grid=28,eq_M=14,eq_M_grid=28,eq_N=14,eq_N_grid=28,jac_chunk_size=500,maxiter=5,name=precise_QA,tr_method=qr": {
-      "commit": "b08eb42fb",
+    "deriv_mode=batched,eq_L=14,eq_L_grid=28,eq_M=14,eq_M_grid=28,eq_N=14,eq_N_grid=28,jac_chunk_size=10,maxiter=1,name=precise_QA,tr_method=qr": {
+      "commit": "162232af7",
       "config": {
         "deriv_mode": "batched",
         "eq_L": 14,
@@ -13,39 +13,61 @@
         "eq_M_grid": 28,
         "eq_N": 14,
         "eq_N_grid": 28,
-        "jac_chunk_size": 500,
-        "maxiter": 5,
+        "jac_chunk_size": 10,
+        "maxiter": 1,
         "name": "precise_QA",
         "tr_method": "qr"
       },
       "n_repeat": 1,
-      "t_compile": 65.01840203500069,
+      "t_compile": 45.68846839100024,
       "times": [
-        65.01840203500069
+        45.68846839100024
       ],
-      "timestamp": "2026-08-11T19:21:27"
+      "timestamp": "2026-08-14T20:42:35"
     },
-    "deriv_mode=batched,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,jac_chunk_size=None,maxiter=5,name=precise_QA,tr_method=qr": {
-      "commit": "b08eb42fb",
+    "deriv_mode=batched,eq_L=16,eq_L_grid=32,eq_M=16,eq_M_grid=32,eq_N=16,eq_N_grid=32,jac_chunk_size=10,maxiter=1,name=precise_QA,tr_method=qr": {
+      "commit": "162232af7",
       "config": {
         "deriv_mode": "batched",
-        "eq_L": 8,
-        "eq_L_grid": 16,
-        "eq_M": 8,
-        "eq_M_grid": 16,
-        "eq_N": 8,
-        "eq_N_grid": 16,
-        "jac_chunk_size": null,
-        "maxiter": 5,
+        "eq_L": 16,
+        "eq_L_grid": 32,
+        "eq_M": 16,
+        "eq_M_grid": 32,
+        "eq_N": 16,
+        "eq_N_grid": 32,
+        "jac_chunk_size": 10,
+        "maxiter": 1,
         "name": "precise_QA",
         "tr_method": "qr"
       },
       "n_repeat": 1,
-      "t_compile": 16.321685555998556,
+      "t_compile": 89.99714171000005,
       "times": [
-        16.321685555998556
+        89.99714171000005
       ],
-      "timestamp": "2026-08-11T19:53:37"
+      "timestamp": "2026-08-14T20:45:45"
+    },
+    "deriv_mode=batched,eq_L=18,eq_L_grid=36,eq_M=18,eq_M_grid=36,eq_N=18,eq_N_grid=36,jac_chunk_size=1,maxiter=1,name=precise_QA,tr_method=qr": {
+      "commit": "162232af7",
+      "config": {
+        "deriv_mode": "batched",
+        "eq_L": 18,
+        "eq_L_grid": 36,
+        "eq_M": 18,
+        "eq_M_grid": 36,
+        "eq_N": 18,
+        "eq_N_grid": 36,
+        "jac_chunk_size": 1,
+        "maxiter": 1,
+        "name": "precise_QA",
+        "tr_method": "qr"
+      },
+      "n_repeat": 1,
+      "t_compile": 249.11966012700032,
+      "times": [
+        249.11966012700032
+      ],
+      "timestamp": "2026-08-14T20:52:38"
     }
   },
   "script": "01_eq_solve"

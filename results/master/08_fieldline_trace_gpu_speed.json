@@ -1,0 +1,83 @@
+{
+  "device": "gpu",
+  "last_run": "N=20,atol=1e-08,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,name=precise_QH,ntransit=10,num_coils=10,r_over_a=2,rtol=1e-08",
+  "profile_mode": "speed",
+  "runs": {
+    "N=20,atol=1e-08,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,name=precise_QA,ntransit=10,num_coils=10,r_over_a=2,rtol=1e-08": {
+      "commit": "33076c84e",
+      "config": {
+        "N": 20,
+        "atol": 1e-08,
+        "eq_L": 8,
+        "eq_L_grid": 16,
+        "eq_M": 8,
+        "eq_M_grid": 16,
+        "eq_N": 8,
+        "eq_N_grid": 16,
+        "name": "precise_QA",
+        "ntransit": 10,
+        "num_coils": 10,
+        "r_over_a": 2,
+        "rtol": 1e-08
+      },
+      "n_repeat": 2,
+      "t_compile": 30.328742639999746,
+      "times": [
+        25.279607311999825,
+        24.909553159000097
+      ],
+      "timestamp": "2026-08-17T16:38:45"
+    },
+    "N=20,atol=1e-08,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,name=precise_QA,ntransit=30,num_coils=10,r_over_a=2,rtol=1e-08": {
+      "commit": "33076c84e",
+      "config": {
+        "N": 20,
+        "atol": 1e-08,
+        "eq_L": 8,
+        "eq_L_grid": 16,
+        "eq_M": 8,
+        "eq_M_grid": 16,
+        "eq_N": 8,
+        "eq_N_grid": 16,
+        "name": "precise_QA",
+        "ntransit": 30,
+        "num_coils": 10,
+        "r_over_a": 2,
+        "rtol": 1e-08
+      },
+      "n_repeat": 2,
+      "t_compile": 64.78320025099993,
+      "times": [
+        61.43996624299962,
+        65.81152160500005
+      ],
+      "timestamp": "2026-08-17T16:43:22"
+    },
+    "N=20,atol=1e-08,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,name=precise_QH,ntransit=10,num_coils=10,r_over_a=2,rtol=1e-08": {
+      "commit": "33076c84e",
+      "config": {
+        "N": 20,
+        "atol": 1e-08,
+        "eq_L": 8,
+        "eq_L_grid": 16,
+        "eq_M": 8,
+        "eq_M_grid": 16,
+        "eq_N": 8,
+        "eq_N_grid": 16,
+        "name": "precise_QH",
+        "ntransit": 10,
+        "num_coils": 10,
+        "r_over_a": 2,
+        "rtol": 1e-08
+      },
+      "n_repeat": 2,
+      "t_compile": 145.00461518400016,
+      "times": [
+        147.42867625500003,
+        141.51257710399932
+      ],
+      "timestamp": "2026-08-17T16:53:43"
+    }
+  },
+  "script": "08_fieldline_trace"
+}

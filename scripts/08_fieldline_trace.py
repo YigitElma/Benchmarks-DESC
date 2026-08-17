@@ -79,9 +79,16 @@ print(f"save dir : {SAVE_DIR}")
 N = 20
 num_coils = 10
 r_over_a = 2
-name = "precise_QA"
+name = "precise_QH"
+res = 8
+ntransit = 10
 
 eq = get(name)
+# keep the initial values the same
+eq = load(f"./inputs/{name}_output.h5")[-1]
+eq.change_resolution(
+    L=res, M=res, N=res, L_grid=2 * res, M_grid=2 * res, N_grid=2 * res
+)
 field_grid = LinearGrid(N=20)
 
 # field = init_modular(eq, 5, 1.5)
@@ -91,7 +98,7 @@ field = field.to_FourierXYZ(N=8, grid=field_grid, check_intersection=False)
 # r0 = jnp.linspace(10.5, 11.0, N)
 r0 = jnp.linspace(1, 1.2, N)
 z0 = jnp.zeros(N)
-phis = jnp.asarray([0.0, 10 * 2 * np.pi])
+phis = jnp.asarray([0.0, ntransit * 2 * np.pi])
 
 # Build diffrax objects ONCE and reuse.
 bounds_R = (0.0, np.inf)
@@ -124,7 +131,7 @@ def _run_jit(r0, z0, phis, field):
         params=field.params_dict,
         source_grid=field_grid,
         solver=Tsit5(),
-        max_steps=100000,
+        max_steps=1000000,
         min_step_size=min_step_size,
         saveat=OPTIONS["saveat"],
         stepsize_controller=OPTIONS["stepsize_controller"],
@@ -154,6 +161,7 @@ CONFIG = {
     "r_over_a": r_over_a,
     "rtol": rtol,
     "atol": atol,
+    "ntransit": ntransit,
 }
 print(f"config : {config_key(CONFIG)}")
 

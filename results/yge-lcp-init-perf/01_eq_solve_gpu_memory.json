@@ -1,0 +1,74 @@
+{
+  "device": "gpu",
+  "last_run": "deriv_mode=batched,eq_L=18,eq_L_grid=36,eq_M=18,eq_M_grid=36,eq_N=18,eq_N_grid=36,jac_chunk_size=1,maxiter=1,name=precise_QA,tr_method=qr",
+  "profile_mode": "memory",
+  "runs": {
+    "deriv_mode=batched,eq_L=14,eq_L_grid=28,eq_M=14,eq_M_grid=28,eq_N=14,eq_N_grid=28,jac_chunk_size=10,maxiter=1,name=precise_QA,tr_method=qr": {
+      "commit": "730afbc6f",
+      "config": {
+        "deriv_mode": "batched",
+        "eq_L": 14,
+        "eq_L_grid": 28,
+        "eq_M": 14,
+        "eq_M_grid": 28,
+        "eq_N": 14,
+        "eq_N_grid": 28,
+        "jac_chunk_size": 10,
+        "maxiter": 1,
+        "name": "precise_QA",
+        "tr_method": "qr"
+      },
+      "n_repeat": 1,
+      "t_compile": 42.944004165000024,
+      "times": [
+        42.944004165000024
+      ],
+      "timestamp": "2026-08-14T20:43:31"
+    },
+    "deriv_mode=batched,eq_L=16,eq_L_grid=32,eq_M=16,eq_M_grid=32,eq_N=16,eq_N_grid=32,jac_chunk_size=10,maxiter=1,name=precise_QA,tr_method=qr": {
+      "commit": "730afbc6f",
+      "config": {
+        "deriv_mode": "batched",
+        "eq_L": 16,
+        "eq_L_grid": 32,
+        "eq_M": 16,
+        "eq_M_grid": 32,
+        "eq_N": 16,
+        "eq_N_grid": 32,
+        "jac_chunk_size": 10,
+        "maxiter": 1,
+        "name": "precise_QA",
+        "tr_method": "qr"
+      },
+      "n_repeat": 1,
+      "t_compile": 81.02439594999987,
+      "times": [
+        81.02439594999987
+      ],
+      "timestamp": "2026-08-14T20:47:21"
+    },
+    "deriv_mode=batched,eq_L=18,eq_L_grid=36,eq_M=18,eq_M_grid=36,eq_N=18,eq_N_grid=36,jac_chunk_size=1,maxiter=1,name=precise_QA,tr_method=qr": {
+      "commit": "730afbc6f",
+      "config": {
+        "deriv_mode": "batched",
+        "eq_L": 18,
+        "eq_L_grid": 36,
+        "eq_M": 18,
+        "eq_M_grid": 36,
+        "eq_N": 18,
+        "eq_N_grid": 36,
+        "jac_chunk_size": 1,
+        "maxiter": 1,
+        "name": "precise_QA",
+        "tr_method": "qr"
+      },
+      "n_repeat": 1,
+      "t_compile": 226.24181234299976,
+      "times": [
+        226.24181234299976
+      ],
+      "timestamp": "2026-08-14T20:58:56"
+    }
+  },
+  "script": "01_eq_solve"
+}

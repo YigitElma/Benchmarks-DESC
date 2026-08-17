@@ -1,0 +1,80 @@
+{
+  "device": "gpu",
+  "last_run": "eq_L=20,eq_L_grid=40,eq_M=20,eq_M_grid=40,eq_N=20,eq_N_grid=40,name=precise_QA",
+  "profile_mode": "memory",
+  "runs": {
+    "eq_L=14,eq_L_grid=28,eq_M=14,eq_M_grid=28,eq_N=14,eq_N_grid=28,name=precise_QA": {
+      "commit": "730afbc6f",
+      "config": {
+        "eq_L": 14,
+        "eq_L_grid": 28,
+        "eq_M": 14,
+        "eq_M_grid": 28,
+        "eq_N": 14,
+        "eq_N_grid": 28,
+        "name": "precise_QA"
+      },
+      "n_repeat": 1,
+      "t_compile": 6.2990824570006225,
+      "times": [
+        4.4670277050026925
+      ],
+      "timestamp": "2026-08-15T01:46:35"
+    },
+    "eq_L=16,eq_L_grid=32,eq_M=16,eq_M_grid=32,eq_N=16,eq_N_grid=32,name=precise_QA": {
+      "commit": "730afbc6f",
+      "config": {
+        "eq_L": 16,
+        "eq_L_grid": 32,
+        "eq_M": 16,
+        "eq_M_grid": 32,
+        "eq_N": 16,
+        "eq_N_grid": 32,
+        "name": "precise_QA"
+      },
+      "n_repeat": 1,
+      "t_compile": 10.356701376000274,
+      "times": [
+        6.501585553000041
+      ],
+      "timestamp": "2026-08-15T01:47:54"
+    },
+    "eq_L=18,eq_L_grid=36,eq_M=18,eq_M_grid=36,eq_N=18,eq_N_grid=36,name=precise_QA": {
+      "commit": "730afbc6f",
+      "config": {
+        "eq_L": 18,
+        "eq_L_grid": 36,
+        "eq_M": 18,
+        "eq_M_grid": 36,
+        "eq_N": 18,
+        "eq_N_grid": 36,
+        "name": "precise_QA"
+      },
+      "n_repeat": 1,
+      "t_compile": 17.47888446399884,
+      "times": [
+        9.674976165999396
+      ],
+      "timestamp": "2026-08-15T01:50:33"
+    },
+    "eq_L=20,eq_L_grid=40,eq_M=20,eq_M_grid=40,eq_N=20,eq_N_grid=40,name=precise_QA": {
+      "commit": "730afbc6f",
+      "config": {
+        "eq_L": 20,
+        "eq_L_grid": 40,
+        "eq_M": 20,
+        "eq_M_grid": 40,
+        "eq_N": 20,
+        "eq_N_grid": 40,
+        "name": "precise_QA"
+      },
+      "n_repeat": 1,
+      "t_compile": 33.32713311800035,
+      "times": [
+        15.794908322000992
+      ],
+      "timestamp": "2026-08-15T01:54:30"
+    }
+  },
+  "script": "10_lcp_build"
+}

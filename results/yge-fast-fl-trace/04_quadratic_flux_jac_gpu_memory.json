@@ -1,0 +1,52 @@
+{
+  "device": "gpu",
+  "last_run": "bs_chunk_size=None,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,jac_chunk_size=None,n_modular=20,n_saddle=12,name=precise_QH",
+  "profile_mode": "memory",
+  "runs": {
+    "bs_chunk_size=None,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,jac_chunk_size=None,n_modular=10,n_saddle=6,name=precise_QH": {
+      "commit": "8b1378c20",
+      "config": {
+        "bs_chunk_size": null,
+        "eq_L": 8,
+        "eq_L_grid": 16,
+        "eq_M": 8,
+        "eq_M_grid": 16,
+        "eq_N": 8,
+        "eq_N_grid": 16,
+        "jac_chunk_size": null,
+        "n_modular": 10,
+        "n_saddle": 6,
+        "name": "precise_QH"
+      },
+      "n_repeat": 1,
+      "t_compile": 7.002210188000049,
+      "times": [
+        3.04717732000006
+      ],
+      "timestamp": "2026-08-17T15:52:46"
+    },
+    "bs_chunk_size=None,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,jac_chunk_size=None,n_modular=20,n_saddle=12,name=precise_QH": {
+      "commit": "8b1378c20",
+      "config": {
+        "bs_chunk_size": null,
+        "eq_L": 8,
+        "eq_L_grid": 16,
+        "eq_M": 8,
+        "eq_M_grid": 16,
+        "eq_N": 8,
+        "eq_N_grid": 16,
+        "jac_chunk_size": null,
+        "n_modular": 20,
+        "n_saddle": 12,
+        "name": "precise_QH"
+      },
+      "n_repeat": 1,
+      "t_compile": 17.397407860000044,
+      "times": [
+        12.19648215999996
+      ],
+      "timestamp": "2026-08-17T15:55:50"
+    }
+  },
+  "script": "04_quadratic_flux_jac"
+}

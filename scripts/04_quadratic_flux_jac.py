@@ -75,9 +75,12 @@ n_modular = 10
 n_saddle = 6
 jac_chunk_size = None
 bs_chunk_size = None
+N = 12
 
-name = "precise_QH"
-eq = get(name)
+name = "precise_QA"
+# keep the initial values the same
+eq = load(f"./inputs/{name}_output.h5")[-1]
+eq.change_resolution(L=N, M=N, N=N, L_grid=2 * N, M_grid=2 * N, N_grid=2 * N)
 field_grid = LinearGrid(N=50)
 modular = init_modular(eq, num_coils=n_modular, r_over_a=2.5).to_FourierXYZ(
     N=8, grid=field_grid, check_intersection=False

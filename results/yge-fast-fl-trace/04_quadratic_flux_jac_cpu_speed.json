@@ -1,0 +1,112 @@
+{
+  "device": "cpu",
+  "last_run": "bs_chunk_size=None,eq_L=12,eq_L_grid=24,eq_M=12,eq_M_grid=24,eq_N=12,eq_N_grid=24,jac_chunk_size=None,n_modular=10,n_saddle=6,name=precise_QA",
+  "profile_mode": "speed",
+  "runs": {
+    "bs_chunk_size=None,eq_L=12,eq_L_grid=24,eq_M=12,eq_M_grid=24,eq_N=12,eq_N_grid=24,jac_chunk_size=None,n_modular=10,n_saddle=6,name=precise_QA": {
+      "commit": "8b1378c20",
+      "config": {
+        "bs_chunk_size": null,
+        "eq_L": 12,
+        "eq_L_grid": 24,
+        "eq_M": 12,
+        "eq_M_grid": 24,
+        "eq_N": 12,
+        "eq_N_grid": 24,
+        "jac_chunk_size": null,
+        "n_modular": 10,
+        "n_saddle": 6,
+        "name": "precise_QA"
+      },
+      "n_repeat": 5,
+      "t_compile": 10.131226339000023,
+      "times": [
+        8.636388421999982,
+        8.567032634000043,
+        8.567165961000228,
+        8.594678985999963,
+        8.686104650000289
+      ],
+      "timestamp": "2026-08-17T16:26:07"
+    },
+    "bs_chunk_size=None,eq_L=12,eq_L_grid=24,eq_M=12,eq_M_grid=24,eq_N=12,eq_N_grid=24,jac_chunk_size=None,n_modular=10,n_saddle=6,name=precise_QH": {
+      "commit": "8b1378c20",
+      "config": {
+        "bs_chunk_size": null,
+        "eq_L": 12,
+        "eq_L_grid": 24,
+        "eq_M": 12,
+        "eq_M_grid": 24,
+        "eq_N": 12,
+        "eq_N_grid": 24,
+        "jac_chunk_size": null,
+        "n_modular": 10,
+        "n_saddle": 6,
+        "name": "precise_QH"
+      },
+      "n_repeat": 5,
+      "t_compile": 19.039224174000083,
+      "times": [
+        17.23839132100011,
+        17.13120419100005,
+        17.311709713000255,
+        17.385788843000228,
+        17.687585106999904
+      ],
+      "timestamp": "2026-08-17T16:22:12"
+    },
+    "bs_chunk_size=None,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,jac_chunk_size=None,n_modular=10,n_saddle=6,name=precise_QA": {
+      "commit": "8b1378c20",
+      "config": {
+        "bs_chunk_size": null,
+        "eq_L": 8,
+        "eq_L_grid": 16,
+        "eq_M": 8,
+        "eq_M_grid": 16,
+        "eq_N": 8,
+        "eq_N_grid": 16,
+        "jac_chunk_size": null,
+        "n_modular": 10,
+        "n_saddle": 6,
+        "name": "precise_QA"
+      },
+      "n_repeat": 5,
+      "t_compile": 5.066050482000037,
+      "times": [
+        3.2457907590001014,
+        3.146492174000059,
+        3.1112870199999634,
+        3.145558729999948,
+        3.226174224000033
+      ],
+      "timestamp": "2026-08-17T16:11:23"
+    },
+    "bs_chunk_size=None,eq_L=8,eq_L_grid=16,eq_M=8,eq_M_grid=16,eq_N=8,eq_N_grid=16,jac_chunk_size=None,n_modular=10,n_saddle=6,name=precise_QH": {
+      "commit": "8b1378c20",
+      "config": {
+        "bs_chunk_size": null,
+        "eq_L": 8,
+        "eq_L_grid": 16,
+        "eq_M": 8,
+        "eq_M_grid": 16,
+        "eq_N": 8,
+        "eq_N_grid": 16,
+        "jac_chunk_size": null,
+        "n_modular": 10,
+        "n_saddle": 6,
+        "name": "precise_QH"
+      },
+      "n_repeat": 5,
+      "t_compile": 8.146052713000017,
+      "times": [
+        6.234137467999972,
+        6.271539338000139,
+        6.499168826999949,
+        7.451011708000124,
+        8.093777259000035
+      ],
+      "timestamp": "2026-08-17T16:14:34"
+    }
+  },
+  "script": "04_quadratic_flux_jac"
+}
