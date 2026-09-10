@@ -49,12 +49,12 @@ To step through many versions instead of comparing two, list them at the top of
 pair, `memory-<script>-<device>-<v1>-<v2>-<id>.png`, `<id>` being the same
 settings hash the traces carry:
 
-![one pair of versions](results/example.png)
+![one pair of versions](examples/example.png)
 
 Each version keeps its color and every frame shares its axes, so the frames also
 go straight into a gif, `memory-<script>-<device>-<id>.gif`:
 
-![every version in turn](results/example.gif)
+![every version in turn](examples/example.gif)
 
 ## Adding a benchmark
 

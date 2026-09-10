@@ -4,7 +4,7 @@
 # of the two you call decides speed or memory; memory also forces N_REPEAT=1.
 
 DESC_DIR="/CODES/DESC"
-BRANCHES=("master")
+BRANCHES=("yge/fast-particle-trace")
 # conda envs to compare (e.g. different dependency versions).
 # Provide proper envs for your device here.
 ENVS=("gpu")
@@ -20,8 +20,8 @@ RESULTS_DIR="results"  # one folder per branch below this
 # SCRIPT="05_opt_freeb_coils.py"
 # SCRIPT="06_prox_jac_qa.py"
 # SCRIPT="07_prox_jac_qa_coils.py"
-SCRIPT="08_fieldline_trace.py"
-# SCRIPT="09_particle_trace.py"
+# SCRIPT="08_fieldline_trace.py"
+SCRIPT="09_particle_trace.py"
 # SCRIPT="10_lcp_build.py"
 
 # sourced, so these exit the driver that sourced this file

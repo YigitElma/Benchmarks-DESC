@@ -93,7 +93,13 @@ from desc.continuation import solve_continuation_automatic
 from desc.compute.data_index import register_compute_fun
 from desc.optimize.utils import solve_triangular_regularized
 from desc.particles import _trace_particles
-from desc.particles import _precompute_zernike_bases
+
+try:
+    from desc.particles import _precompute_zernike_bases
+
+    fast_transforms = True
+except ImportError:
+    fast_transforms = False
 
 from bench_io import config_key, save_result
 
@@ -103,7 +109,7 @@ print(f"save dir : {SAVE_DIR}")
 
 # "poly" evaluates the Zernike radial basis with precomputed polynomial
 # coefficients, "jacobi" uses the standard sequential Jacobi recurrence
-ZERNIKE_MODE = "poly"
+ZERNIKE_MODE = "poly" if fast_transforms else "jacobi"
 # None -> unbounded plain lax.while_loop: no checkpointed-loop bookkeeping
 # inside the solve, the friendliest shape for WHILE command buffer capture.
 # Forward only (cannot backprop through the solve). Set an int to restore the
@@ -116,16 +122,16 @@ if eq.iota is None:
     # single point grids used during tracing cannot compute iota from current
     eq.iota = eq.get_profile("iota").to_powerseries(order=eq.L)
 
-N = 1000
+N = 1024
 particles = ManualParticleInitializerFlux(
-    rho0=jnp.linspace(0.2, 0.7, N),
+    rho0=jnp.linspace(0.2, 0.5, N),
     theta0=jnp.zeros(N),
     zeta0=jnp.zeros(N),
     xi0=jnp.linspace(-0.9, 0.9, N),
     E=3.5e6,
 )
 model = VacuumGuidingCenterTrajectory(frame="flux")
-ts = jnp.linspace(0, 1e-3, 101)
+ts = jnp.linspace(0, 1e-3, 301)
 
 # Build diffrax objects ONCE and reuse, so that eqx.filter_jit on diffeqsolve
 # does not recompile on every call due to fresh closures.
@@ -137,7 +143,7 @@ def terminating_event(t, y, args, **kwargs):
     return jnp.logical_or(i < bounds[0, 0], i > bounds[0, 1])
 
 
-rtol, atol = 1e-4, 1e-4
+rtol, atol = 1e-6, 1e-6
 min_step_size = 1e-8
 OPTIONS = {
     "saveat": SaveAt(ts=ts),
@@ -153,9 +159,10 @@ y0, model_args = particles.init_particles(model, eq)
 # precomputed polynomial coefficient tables for the Zernike radial basis,
 # built once outside the solve (this is what trace_particles does internally
 # for zernike_mode="poly")
-options = (
-    {"zernike_bases": _precompute_zernike_bases(eq)} if ZERNIKE_MODE == "poly" else {}
-)
+if fast_transforms and ZERNIKE_MODE == "poly":
+    options = {"zernike_bases": _precompute_zernike_bases(eq)}
+else:
+    options = {}
 
 
 @eqx.filter_jit
@@ -198,7 +205,8 @@ CONFIG = {
     "eq_M_grid": eq.M_grid,
     "eq_N_grid": eq.N_grid,
     "N": N,
-    "ZERNIKE_MODE": ZERNIKE_MODE,
+    "tfinal": ts[-1],
+    # "ZERNIKE_MODE": ZERNIKE_MODE,
     "MAX_STEPS": MAX_STEPS,
     "ENABLE_CUDA_GRAPHS": ENABLE_CUDA_GRAPHS,
     "rtol": rtol,
